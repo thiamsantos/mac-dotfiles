@@ -1,0 +1,6 @@
+[init]
+  defaultBranch = "main"
+
+[user]
+  name = "Thiago Santos"
+  email = "thia.mdossantos@gmail.com"
