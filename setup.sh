@@ -114,7 +114,7 @@ then
     asdf global elixir 1.14.4-otp-25
 fi
 
-if ! [ -x "$(command -v rust)" ]
+if ! [ -x "$(command -v rustc)" ]
 then
     asdf install rust 1.70.0
     asdf global rust 1.70.0
