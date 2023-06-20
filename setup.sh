@@ -37,6 +37,9 @@ brew install wget
 brew install wxwidgets
 brew install zsh
 brew install vim
+brew install ripgrep
+brew install tldr
+brew install fd
 
 brew install --cask 1password
 brew install --cask arc
@@ -127,5 +130,9 @@ if [ ! -d "$dracula_highlighting" ]
 then
     git clone https://github.com/dracula/zsh-syntax-highlighting.git $dracula_highlighting
 fi
+
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-modules
+ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
 
 echo "Setup completed!"
