@@ -132,7 +132,17 @@ then
 fi
 
 brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-modules
+brew install --cask emacs-mac
 ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
+
+doom_emacs_folder="~/.config/emacs"
+
+if [ ! -d "$doom_emacs_folder" ]
+then
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $doom_emacs_folder
+    $doom_emacs_folder/bin/doom install
+fi
+
+$doom_emacs_folder/bin/doom doctor
 
 echo "Setup completed!"

@@ -23,6 +23,7 @@ antigen apply
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
 export EDITOR="vim"
 
 # alias xclip="xclip -selection c"
