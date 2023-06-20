@@ -43,6 +43,7 @@ brew install unzip
 brew install wget
 brew install wxwidgets
 brew install zsh
+brew install vim
 
 brew install --cask 1password
 brew install --cask arc
@@ -92,35 +93,40 @@ asdf plugin update --all
 
 if ! [ -x "$(command -v node)" ]
 then
+    echo "Installing nodejs"
     asdf install nodejs 18.12.1
     asdf global nodejs 18.12.1
 fi
 
 if ! [ -x "$(command -v yarn)" ]
 then
+    echo "Installing yarn"
     asdf install yarn 1.22.19
     asdf global yarn 1.22.19
 fi
 
 if ! [ -x "$(command -v erl)" ]
 then
-   asdf install erlang 25.3
-   asdf global erlang 25.3
+    echo "Installing erlang"
+    asdf install erlang 25.3
+    asdf global erlang 25.3
 fi
 
 if ! [ -x "$(command -v elixir)" ]
 then
+    echo "Installing elixir"
     asdf install elixir 1.14.4-otp-25
     asdf global elixir 1.14.4-otp-25
 fi
 
 if ! [ -x "$(command -v rustc)" ]
 then
+    echo "Installing rust"
     asdf install rust 1.70.0
     asdf global rust 1.70.0
 fi
 
-stow --verbose --target=$HOME git zsh asdf
+stow --verbose --target=$HOME git zsh asdf vim
 
 dracula_highlighting="$HOME/src/dracula-zsh-syntax-highlighting"
 
