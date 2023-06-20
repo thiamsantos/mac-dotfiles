@@ -110,4 +110,11 @@ fi
 
 stow --verbose --target=$HOME git zsh
 
+dracula_highlighting="$HOME/src/dracula-zsh-syntax-highlighting"
+
+if [ ! -d "$dracula_highlighting" ]
+then
+    git clone https://github.com/dracula/zsh-syntax-highlighting.git $dracula_highlighting
+fi
+
 echo "Setup completed!"

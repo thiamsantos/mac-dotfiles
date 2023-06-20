@@ -1,5 +1,7 @@
 source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 
+source $HOME/src/dracula-zsh-syntax-highlighting/zsh-syntax-highlighting.sh
+
 antigen use oh-my-zsh
 
 antigen bundle aws
@@ -7,7 +9,6 @@ antigen bundle asdf
 antigen bundle direnv
 antigen bundle fzf
 antigen bundle mix
-antigen bundle genpass
 antigen bundle terraform
 # antigen bundle rust
 antigen bundle yarn
@@ -19,6 +20,12 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme dracula/zsh
 
 antigen apply
+
+# alias xclip="xclip -selection c"
+alias mt="mix format && mix test && mix credo"
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+export PATH="$PATH:$HOME/bin"
 
 alias ga="git add"
 alias gap="git add -p"
@@ -51,5 +58,42 @@ grsync() {
   gck "$main_branch" && gpl && gck - && git rebase "$main_branch"
 }
 
-# alias xclip="xclip -selection c"
-alias mt="mix format && mix test && mix credo"
+encrypt_value() {
+  echo -n "Enter value: "
+  stty -echo
+  read value
+  echo
+  stty echo
+
+  echo -n "Enter secret: "
+  stty -echo
+  read secret
+  echo
+  stty echo
+
+  echo $value | openssl aes-256-cbc -a -salt -k $secret -pbkdf2 | xclip
+  echo 'Encrypted value copied to clipboard!'
+}
+
+decrypt_value() {
+  echo -n "Enter encrypted value: "
+  stty -echo
+  read encrypted_value
+  echo
+  stty echo
+
+  echo -n "Enter secret: "
+  stty -echo
+  read secret
+  echo
+  stty echo
+
+  echo $encrypted_value | openssl aes-256-cbc -d -a -k $secret -pbkdf2 | xclip
+  echo 'Value copied to clipboard!'
+}
+
+genpasswd() {
+  local size=${1:-64}
+
+  strings /dev/urandom | grep -o '[[:alnum:]]' | head -n $size | tr -d '\n'
+}
