@@ -90,4 +90,4 @@ asdf plugin update --all
 #     asdf global nodejs 18.12.1
 # fi
 
-stow --simulate --target=$HOME git zsh
+stow --verbose --target=$HOME git zsh
