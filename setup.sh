@@ -43,7 +43,6 @@ brew install unzip
 brew install wget
 brew install wxwidgets
 brew install zsh
-brew install zsh-autosuggestions
 
 brew install --cask 1password
 brew install --cask arc
@@ -61,10 +60,28 @@ brew install --cask zoom
 
 . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin add yarn
-asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf_folder="$HOME/.asdf"
+
+if [ ! -d "$asdf_folder/plugins/nodejs" ]
+then
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+fi
+
+if [ ! -d "$asdf_folder/plugins/yarn" ]
+then
+    asdf plugin add yarn
+fi
+
+if [ ! -d "$asdf_folder/plugins/erlang" ]
+then
+    asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+fi
+
+if [ ! -d "$asdf_folder/plugins/elixir" ]
+then
+   asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+fi
+
 asdf plugin update --all
 
 # if ! [ -x "$(command -v node)" ]
