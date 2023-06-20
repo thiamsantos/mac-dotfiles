@@ -82,6 +82,12 @@ then
    asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 fi
 
+
+if [ ! -d "$asdf_folder/plugins/rust" ]
+then
+    asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
+fi
+
 asdf plugin update --all
 
 if ! [ -x "$(command -v node)" ]
