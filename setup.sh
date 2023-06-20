@@ -90,10 +90,20 @@ then
     asdf global nodejs 18.12.1
 fi
 
+if ! [ -x "$(command -v yarn)" ]
+then
+    asdf install yarn 1.22.19
+    asdf global yarn 1.22.19
+fi
+
+if ! [ -x "$(command -v erl)" ]
+then
+   asdf install erlang 25.3
+   asdf global erlang 25.3
+fi
+
 if ! [ -x "$(command -v elixir)" ]
 then
-    asdf install erlang 25.3
-    asdf global erlang 25.3
     asdf install elixir 1.14.4-otp-25
     asdf global elixir 1.14.4-otp-25
 fi
