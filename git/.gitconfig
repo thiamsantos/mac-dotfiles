@@ -6,4 +6,4 @@
   email = "thia.mdossantos@gmail.com"
 
 [core]
-  excludesFile = "~/.gitignore"
+  excludesFile = "~/.globalgitignore"
