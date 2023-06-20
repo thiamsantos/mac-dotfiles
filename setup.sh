@@ -114,7 +114,13 @@ then
     asdf global elixir 1.14.4-otp-25
 fi
 
-stow --verbose --target=$HOME git zsh
+if ! [ -x "$(command -v rust)" ]
+then
+    asdf install rust 1.70.0
+    asdf global rust 1.70.0
+fi
+
+stow --verbose --target=$HOME git zsh asdf
 
 dracula_highlighting="$HOME/src/dracula-zsh-syntax-highlighting"
 

@@ -14,7 +14,6 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
-Plug 'preservim/nerdtree'
 
 call plug#end()
 

@@ -10,7 +10,7 @@ antigen bundle direnv
 antigen bundle fzf
 antigen bundle mix
 antigen bundle terraform
-# antigen bundle rust
+antigen bundle rust
 antigen bundle yarn
 
 antigen bundle Aloxaf/fzf-tab
@@ -21,12 +21,12 @@ antigen theme dracula/zsh
 
 antigen apply
 
-# alias xclip="xclip -selection c"
-alias mt="mix format && mix test && mix credo"
-
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$PATH:$HOME/bin"
+export EDITOR="vim"
 
+# alias xclip="xclip -selection c"
+alias mt="mix format && mix test && mix credo"
 alias ga="git add"
 alias gap="git add -p"
 alias gc="git commit -m"
