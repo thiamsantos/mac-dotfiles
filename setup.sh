@@ -92,6 +92,8 @@ fi
 
 if ! [ -x "$(command -v elixir)" ]
 then
+    asdf install erlang 25.3
+    asdf global erlang 25.3
     asdf install elixir 1.14.4-otp-25
     asdf global elixir 1.14.4-otp-25
 fi
