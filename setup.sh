@@ -133,7 +133,6 @@ fi
 
 brew tap railwaycat/emacsmacport
 brew install --cask emacs-mac
-ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
 
 doom_emacs_folder="~/.config/emacs"
 
