@@ -134,7 +134,7 @@ fi
 brew tap railwaycat/emacsmacport
 brew install --cask emacs-mac
 
-doom_emacs_folder="~/.config/emacs"
+doom_emacs_folder="$HOME/.config/emacs"
 
 if [ ! -d "$doom_emacs_folder" ]
 then
