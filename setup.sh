@@ -90,6 +90,12 @@ then
     asdf global nodejs 18.12.1
 fi
 
+if ! [ -x "$(command -v elixir)" ]
+then
+    asdf install elixir 1.14.4-otp-25
+    asdf global elixir 1.14.4-otp-25
+fi
+
 stow --verbose --target=$HOME git zsh
 
 echo "Setup completed!"
