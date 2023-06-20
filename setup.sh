@@ -10,14 +10,7 @@ mkdir -p "$HOME/src"
 mkdir -p "$HOME/dev/finbits"
 mkdir -p "$HOME/dev/thiamsantos"
 
-if [[ $(command -v brew) == "" ]]; then
-    echo "Installing Hombrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    echo "Updating Homebrew"
-    brew update
-fi
+brew update
 
 brew install antigen
 brew install asdf
