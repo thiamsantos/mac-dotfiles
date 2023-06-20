@@ -84,10 +84,12 @@ fi
 
 asdf plugin update --all
 
-# if ! [ -x "$(command -v node)" ]
-# then
-#     asdf install nodejs 18.12.1
-#     asdf global nodejs 18.12.1
-# fi
+if ! [ -x "$(command -v node)" ]
+then
+    asdf install nodejs 18.12.1
+    asdf global nodejs 18.12.1
+fi
 
 stow --verbose --target=$HOME git zsh
+
+echo "Setup completed!"

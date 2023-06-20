@@ -4,3 +4,6 @@
 [user]
   name = "Thiago Santos"
   email = "thia.mdossantos@gmail.com"
+
+[core]
+  excludesFile = "~/.gitignore"
