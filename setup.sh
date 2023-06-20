@@ -12,6 +12,7 @@ mkdir -p "$HOME/dev/thiamsantos"
 
 brew update
 
+brew install git-delta
 brew install antigen
 brew install asdf
 brew install autoconf
@@ -40,6 +41,7 @@ brew install vim
 brew install ripgrep
 brew install tldr
 brew install fd
+brew install editorconfig
 
 brew install --cask 1password
 brew install --cask arc
@@ -135,13 +137,13 @@ brew tap railwaycat/emacsmacport
 brew install --cask emacs-mac
 
 doom_emacs_folder="$HOME/.config/emacs"
+mkdir -p $doom_emacs_folder
+stow --verbose --target=$doom_emacs_folder doom
 
 if [ ! -d "$doom_emacs_folder" ]
 then
     git clone --depth 1 https://github.com/doomemacs/doomemacs $doom_emacs_folder
     $doom_emacs_folder/bin/doom install
 fi
-
-$doom_emacs_folder/bin/doom doctor
 
 echo "Setup completed!"
