@@ -48,13 +48,11 @@ brew install --cask arc
 brew install --cask docker
 brew install --cask figma
 brew install --cask height
-brew install --cask hiddenbar
 brew install --cask iterm2
 brew install --cask raycast
 brew install --cask slack
 brew install --cask spotify
 brew install --cask todoist
-brew install --cask whichspace
 brew install --cask zoom
 
 . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
@@ -137,8 +135,8 @@ brew tap railwaycat/emacsmacport
 brew install --cask emacs-mac
 
 doom_emacs_folder="$HOME/.config/emacs"
-mkdir -p $doom_emacs_folder
-stow --verbose --target=$doom_emacs_folder doom
+mkdir -p "$HOME/.config/doom"
+stow --verbose --target="$HOME/.config/doom" doom
 
 if [ ! -d "$doom_emacs_folder" ]
 then
