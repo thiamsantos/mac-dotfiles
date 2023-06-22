@@ -1,6 +1,17 @@
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 source $HOMEBREW_PREFIX/share/antigen/antigen.zsh
 
 source $HOME/src/dracula-zsh-syntax-highlighting/zsh-syntax-highlighting.sh
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 antigen use oh-my-zsh
 

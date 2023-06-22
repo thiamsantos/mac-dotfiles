@@ -9,39 +9,58 @@ mkdir -p "$HOME/bin"
 mkdir -p "$HOME/src"
 mkdir -p "$HOME/dev/finbits"
 mkdir -p "$HOME/dev/thiamsantos"
+mkdir -p "$HOME/.docker/cli-plugins"
+mkdir -p "$HOME/.config/doom"
+
+log_info() {
+    echo "##"
+    echo "##=> $1"
+    echo "##"
+
+}
+
+brew_install() {
+    log_info "Installing $1"
+    brew install $1
+}
 
 brew update
 
-brew install git-delta
-brew install antigen
-brew install asdf
-brew install autoconf
-brew install awscli
-brew install coreutils
-brew install direnv
-brew install docker-compose
-brew install fop
-brew install fzf
-brew install git
-brew install gnu-tar
-brew install gnupg
-brew install go
-brew install jq
-brew install libxslt
-brew install openssl@1.1
-brew install postgresql@13
-brew install stats
-brew install stow
-brew install terraform
-brew install unzip
-brew install wget
-brew install wxwidgets
-brew install zsh
-brew install vim
-brew install ripgrep
-brew install tldr
-brew install fd
-brew install editorconfig
+brew_install git-delta
+brew_install antigen
+brew_install asdf
+brew_install autoconf
+brew_install awscli
+brew_install coreutils
+brew_install direnv
+brew_install docker-compose
+brew_install fop
+brew_install fzf
+brew_install git
+brew_install gnu-tar
+brew_install gnupg
+brew_install go
+brew_install jq
+brew_install libxslt
+brew_install openssl@1.1
+brew_install postgresql@13
+brew_install stow
+brew_install terraform
+brew_install unzip
+brew_install wget
+brew_install wxwidgets
+brew_install zsh
+brew_install vim
+brew_install ripgrep
+brew_install tldr
+brew_install fd
+brew_install editorconfig
+brew_install pandoc
+brew_install shellcheck
+brew_install stylelint
+brew_install isort
+brew_install python@3.11
+brew_install pipenv
 
 brew install --cask 1password
 brew install --cask arc
@@ -52,8 +71,12 @@ brew install --cask iterm2
 brew install --cask raycast
 brew install --cask slack
 brew install --cask spotify
+brew install --cask stats
 brew install --cask todoist
 brew install --cask zoom
+
+pip3 install -U pytest
+pip3 install -U nose
 
 . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 
@@ -89,40 +112,38 @@ asdf plugin update --all
 
 if ! [ -x "$(command -v node)" ]
 then
-    echo "Installing nodejs"
+    log_info "Installing nodejs"
     asdf install nodejs 18.12.1
     asdf global nodejs 18.12.1
 fi
 
 if ! [ -x "$(command -v yarn)" ]
 then
-    echo "Installing yarn"
+    log_info "Installing yarn"
     asdf install yarn 1.22.19
     asdf global yarn 1.22.19
 fi
 
 if ! [ -x "$(command -v erl)" ]
 then
-    echo "Installing erlang"
+    log_info "Installing erlang"
     asdf install erlang 25.3
     asdf global erlang 25.3
 fi
 
 if ! [ -x "$(command -v elixir)" ]
 then
-    echo "Installing elixir"
+    log_info "Installing elixir"
     asdf install elixir 1.14.4-otp-25
     asdf global elixir 1.14.4-otp-25
 fi
 
 if ! [ -x "$(command -v rustc)" ]
 then
-    echo "Installing rust"
+    log_info "Installing rust"
     asdf install rust 1.70.0
     asdf global rust 1.70.0
 fi
-
-stow --verbose --target=$HOME git zsh asdf vim
 
 dracula_highlighting="$HOME/src/dracula-zsh-syntax-highlighting"
 
@@ -131,19 +152,23 @@ then
     git clone https://github.com/dracula/zsh-syntax-highlighting.git $dracula_highlighting
 fi
 
+log_info "Setup symlinks"
+stow --verbose --target=$HOME git zsh asdf vim
+stow --verbose --target=$HOME/bin dot
+stow --verbose --target="$HOME/.config/doom" doom
+ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose "$HOME/.docker/cli-plugins/docker-compose"
+
+log_info "Installing emacs"
 brew tap railwaycat/emacsmacport
 brew install --cask emacs-mac
 
 doom_emacs_folder="$HOME/.config/emacs"
-mkdir -p "$HOME/.config/doom"
-stow --verbose --target="$HOME/.config/doom" doom
 
 if [ ! -d "$doom_emacs_folder" ]
 then
+    log_info "Installing doom emacs"
     git clone --depth 1 https://github.com/doomemacs/doomemacs $doom_emacs_folder
     $doom_emacs_folder/bin/doom install
 fi
-
-stow --verbose --target=$HOME/bin dot
 
 echo "Setup completed!"
