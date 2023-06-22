@@ -144,4 +144,6 @@ then
     $doom_emacs_folder/bin/doom install
 fi
 
+stow --verbose --target=$HOME/bin dot
+
 echo "Setup completed!"

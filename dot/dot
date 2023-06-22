@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+with_cache() {
+    dir="$HOME/.cache/with_cache/"
+    cmd="${@}"
+
+    mkdir -p $dir
+    find $dir -type f -mtime +7 -exec rm -rf {} \;
+
+    cache_file=$dir$(echo $cmd | sed -e s/\ /-/g)
+    if [[ ! -f $cache_file ]]
+    then
+        eval $cmd > $cache_file
+    fi
+    cat $cache_file
+}
+
+clear_cache() {
+    dir="$HOME/.cache/with_cache/"
+    rm -rf $dir
+}
+
+dot_help() {
+  echo "
+Dotfiles CLI.
+
+Usage: dot [command] [args]
+
+Commands:
+  clear_cache            Clear command cache
+  with_cache             Cache output of command
+  *                      Help
+
+Examples:
+  $ dot with_cache ls folder
+"
+  exit 1
+}
+
+case "$1" in
+with_cache)
+  with_cache "${@:2}"
+  ;;
+clear_cache)
+  clear_cache
+  ;;
+*)
+  dot_help
+  ;;
+esac
